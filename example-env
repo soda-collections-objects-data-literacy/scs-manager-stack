@@ -2,7 +2,7 @@
 MODE=production
 # Database
 DB_DRIVER=mysql
-DB_HOST=database
+DB_HOST=scs-manager--database
 DB_NAME=scsdatabase
 DB_PASSWORD=scsdatabasepassword
 DB_PORT=3306

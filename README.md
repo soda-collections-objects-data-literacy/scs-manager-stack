@@ -52,7 +52,7 @@ cp example-env .env
 ```env
 # Database configuration
 DB_DRIVER=mysql
-DB_HOST=database
+DB_HOST=scs--database
 DB_NAME=drupal
 DB_PASSWORD=your_secure_database_password
 DB_PORT=3306
@@ -110,9 +110,9 @@ MariaDB database server with optimized configuration for high performance.
 - Max connections: 1000
 
 **Volumes:**
-- `scs-manager--database-data`: Persistent database storage
+- `scs-manager---database-data`: Persistent database storage
 
-### Redis (scs-manager--redis)
+### Redis (scs-manager-redis)
 
 Redis server for session storage and caching.
 
@@ -131,7 +131,7 @@ Redis server for session storage and caching.
 **Volumes:**
 - `scs-manager--redis-data`: Persistent Redis data
 
-### Varnish (scs-manager--varnish)
+### Varnish (scs-manager-varnish)
 
 HTTP reverse proxy and cache accelerator.
 
@@ -141,7 +141,7 @@ HTTP reverse proxy and cache accelerator.
 - `VARNISH_PORT` (default: 80) → Container port 80
 
 **Configuration:**
-- Backend: Drupal container (`drupal:80`)
+- Backend: Drupal container (`scs-manager-drupal:80`)
 - Cache size: 256MB
 - Memory lock: 512MB
 
@@ -161,7 +161,7 @@ Create a `.env` file in the project root with the following variables:
 | Variable | Description | Example |
 |----------|-------------|---------|
 | `DB_DRIVER` | Database driver | `mysql` |
-| `DB_HOST` | Database hostname (service name) | `database` |
+| `DB_HOST` | Database hostname (service name) | `scs-manager-database` |
 | `DB_NAME` | Database name | `drupal` |
 | `DB_PASSWORD` | Database password | `your_secure_password` |
 | `DB_PORT` | Database port | `3306` |
@@ -218,25 +218,25 @@ docker compose down -v
 docker compose logs -f
 
 # Specific service
-docker compose logs -f drupal
-docker compose logs -f database
-docker compose logs -f redis
-docker compose logs -f varnish
+docker compose logs -f scs-manager--drupal
+docker compose logs -f scs-manager--database
+docker compose logs -f scs-manager--redis
+docker compose logs -f scs-manager--varnish
 ```
 
 ### Execute Drush Commands
 
 ```bash
-docker compose exec drupal drush cr
-docker compose exec drupal drush status
-docker compose exec drupal drush user:login
+docker compose exec scs-manager--drupal drush cr
+docker compose exec scs-manager--drupal drush status
+docker compose exec scs-manager--drupal drush user:login
 ```
 
 ### Execute Composer Commands
 
 ```bash
-docker compose exec drupal composer require drupal/module_name
-docker compose exec drupal composer update
+docker compose exec scs-manager--drupal composer require drupal/module_name
+docker compose exec scs-manager--drupal composer update
 ```
 
 ### Check Service Status
@@ -258,21 +258,21 @@ docker compose exec varnish varnishstat -1
 docker compose exec redis redis-cli ping
 
 # Database connection
-docker compose exec database mysql -u root -p -e "SHOW DATABASES;"
+docker compose exec scs-manager--database mysql -u root -p -e "SHOW DATABASES;"
 ```
 
 ## Volumes
 
 The following named volumes are created:
 
-- `scs-manager--database-data`: MariaDB data directory
+- `scs-manager---database-data`: MariaDB data directory
 - `scs-manager--drupal-sites`: Drupal sites directory (settings, files)
 - `scs-manager--redis-data`: Redis persistent data
 
 To backup volumes:
 
 ```bash
-docker run --rm -v scs-manager--database-data:/data -v $(pwd):/backup alpine tar czf /backup/database-backup.tar.gz /data
+docker run --rm -v scs-manager---database-data:/data -v $(pwd):/backup alpine tar czf /backup/database-backup.tar.gz /data
 ```
 
 ## First Run
@@ -321,7 +321,7 @@ docker compose logs
 Check if Drupal is fully installed:
 
 ```bash
-docker compose exec drupal curl http://localhost/health
+docker compose exec scs-manager-drupal curl http://localhost/health
 ```
 
 ### Varnish Not Starting
@@ -329,7 +329,7 @@ docker compose exec drupal curl http://localhost/health
 Varnish waits for Drupal to be healthy. Check Drupal health:
 
 ```bash
-docker compose ps drupal
+docker compose ps scs-manager-drupal
 ```
 
 ### Redis Connection Issues
@@ -337,7 +337,7 @@ docker compose ps drupal
 Test Redis connectivity:
 
 ```bash
-docker compose exec drupal php -r "\$r = new Redis(); \$r->connect('redis', 6379); echo 'OK';"
+docker compose exec scs-manager-drupal php -r "\$r = new Redis(); \$r->connect('scs-manager-redis', 6379); echo 'OK';"
 ```
 
 ### Database Connection Issues
@@ -345,8 +345,8 @@ docker compose exec drupal php -r "\$r = new Redis(); \$r->connect('redis', 6379
 Verify database is running:
 
 ```bash
-docker compose ps database
-docker compose logs database
+docker compose ps scs-manager-database
+docker compose logs scs-manager-database
 ```
 
 ### Permission Issues
@@ -354,8 +354,8 @@ docker compose logs database
 Reset permissions:
 
 ```bash
-docker compose exec drupal chown -R www-data:www-data /opt/drupal
-docker compose exec drupal chmod -R 775 /opt/drupal
+docker compose exec scs-manager-drupal chown -R www-data:www-data /opt/drupal
+docker compose exec scs-manager-drupal chmod -R 775 /opt/drupal
 ```
 
 ## Production Considerations
