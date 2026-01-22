@@ -1,12 +1,14 @@
 services:
   # Drupal with NGINX
   scs-manager--drupal:
-    image: ghcr.io/soda-collections-objects-data-literacy/scs-manager-image-${MODE:-production}:${SCS_MANAGER_IMAGE_VERSION:-latest}
+    image: ghcr.io/soda-collections-objects-data-literacy/scs-manager-image-${SCS_MANAGER_MODE:-development}:${SCS_MANAGER_IMAGE_VERSION:-latest}
     container_name: scs-manager--drupal
     depends_on:
       - scs-manager--database
     volumes:
       - scs-manager--drupal-sites:/opt/drupal/web/sites
+      - ./custom_configs/sync:/opt/drupal/custom_configs/sync
+      - /var/backups/scs-manager/snapshots:/var/scs-manager/snapshots
     environment:
       DB_DRIVER: ${SCS_MANAGER_DB_DRIVER}
       DB_HOST: ${SCS_MANAGER_DB_HOST}
@@ -17,6 +19,8 @@ services:
       DRUPAL_PASSWORD: ${SCS_MANAGER_DRUPAL_PASSWORD}
       DRUPAL_SITE_NAME: ${SCS_MANAGER_SITE_NAME}
       DRUPAL_USER: ${SCS_MANAGER_DRUPAL_USER}
+      DRUPAL_TRUSTED_HOSTS: ${SCS_MANAGER_DRUPAL_TRUSTED_HOSTS}
+      DRUPAL_PROXY_ADDRESSES: ${SCS_MANAGER_DRUPAL_PROXY_ADDRESSES}
     ports:
       - ${SCS_MANAGER_PORT:-8080}:80
     healthcheck:

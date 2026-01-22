@@ -17,6 +17,8 @@ DRUPAL_SITE_NAME=scs_manager
 DRUPAL_USER=scsadmin
 SCS_MANAGER_IMAGE_VERSION=latest
 SCS_MANAGER_PORT=8080
+SCS_MANAGER_TRUSTED_HOSTS='localhost|manager.scs.sammlungen.io|raw.manager.scs.sammlungen.io'
+SCS_MANAGER_PROXY_ADDRESSES='172.18.0.0/16|172.19.0.0/16'
 
 # Redis
 REDIS_IMAGE_VERSION=8-alpine
