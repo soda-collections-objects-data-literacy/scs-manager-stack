@@ -4,15 +4,15 @@ MODE=production
 DB_DRIVER=mysql
 DB_HOST=scs-manager--database
 DB_NAME=scsdatabase
-DB_PASSWORD=scsdatabasepassword
+DB_PASSWORD=
 DB_PORT=3306
 DB_USER=scsdatabaseuser
-DB_ROOT_PASSWORD=scsdatabaserootpassword
+DB_ROOT_PASSWORD=
 MARIADB_IMAGE_VERSION=latest
 
 # Drupal
 DRUPAL_IMAGE=11.3.2-php8.3-fpm-bookworm
-DRUPAL_PASSWORD=scsadminpassword
+DRUPAL_PASSWORD=
 DRUPAL_SITE_NAME=scs_manager
 DRUPAL_USER=scsadmin
 SCS_MANAGER_IMAGE_VERSION=latest
