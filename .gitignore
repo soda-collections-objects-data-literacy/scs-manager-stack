@@ -2,4 +2,4 @@ custom_configs/
 docker-compose.override.yml
 .env
 volumes
-configs
+custom_configs/

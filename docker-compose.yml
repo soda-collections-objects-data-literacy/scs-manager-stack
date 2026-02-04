@@ -21,6 +21,7 @@ services:
       DRUPAL_USER: ${SCS_MANAGER_DRUPAL_USER}
       DRUPAL_TRUSTED_HOSTS: ${SCS_MANAGER_DRUPAL_TRUSTED_HOSTS}
       DRUPAL_PROXY_ADDRESSES: ${SCS_MANAGER_DRUPAL_PROXY_ADDRESSES}
+      SETTINGS_FILE: "/opt/drupal/web/sites/default/settings.php"
     ports:
       - ${SCS_MANAGER_PORT:-8080}:80
     healthcheck:
