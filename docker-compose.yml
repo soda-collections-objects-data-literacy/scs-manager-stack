@@ -87,7 +87,7 @@ services:
       MYSQL_ROOT_PASSWORD: ${SCS_DB_ROOT_PASSWORD}
       MYSQL_USER: ${SCS_MANAGER_DB_USER}
     volumes:
-      - scs-manager---database-data:/var/lib/mysql
+      - scs-manager--database-data:/var/lib/mysql
 
   scs-manager--redis:
     image: redis:${REDIS_IMAGE_VERSION:-8-alpine}
