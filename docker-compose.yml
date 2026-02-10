@@ -145,6 +145,7 @@ services:
       start_period: 10s
 
 volumes:
-  scs-manager---database-data:
+  scs-manager--database-data:
+  scs-manager--drupal-custom-modules:
   scs-manager--drupal-sites:
   scs-manager--redis-data:
