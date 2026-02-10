@@ -7,7 +7,8 @@ services:
       - scs-manager--database
     volumes:
       - scs-manager--drupal-sites:/opt/drupal/web/sites
-      - ./custom_configs/sync:/opt/drupal/custom_configs/sync
+      - scs-manager--drupal-custom-modules:/opt/drupal/web/modules/custom
+      - ./custom_configs:/opt/drupal/custom_configs
       - /var/backups/scs-manager/snapshots:/var/scs-manager/snapshots
     environment:
       DB_DRIVER: ${SCS_MANAGER_DB_DRIVER}
