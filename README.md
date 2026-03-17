@@ -110,7 +110,7 @@ MariaDB database server with optimized configuration for high performance.
 - Max connections: 1000
 
 **Volumes:**
-- `scs-manager---database-data`: Persistent database storage
+- `scs-manager--database-data`: Persistent database storage
 
 ### Redis (scs-manager-redis)
 
@@ -265,14 +265,14 @@ docker compose exec scs-manager--database mysql -u root -p -e "SHOW DATABASES;"
 
 The following named volumes are created:
 
-- `scs-manager---database-data`: MariaDB data directory
+- `scs-manager--database-data`: MariaDB data directory
 - `scs-manager--drupal-sites`: Drupal sites directory (settings, files)
 - `scs-manager--redis-data`: Redis persistent data
 
 To backup volumes:
 
 ```bash
-docker run --rm -v scs-manager---database-data:/data -v $(pwd):/backup alpine tar czf /backup/database-backup.tar.gz /data
+docker run --rm -v scs-manager--database-data:/data -v $(pwd):/backup alpine tar czf /backup/database-backup.tar.gz /data
 ```
 
 ## First Run
