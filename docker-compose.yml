@@ -9,7 +9,7 @@ services:
       - scs-manager--drupal-sites:/opt/drupal/web/sites
       - scs-manager--drupal-custom-modules:/opt/drupal/web/modules/custom
       - ./custom_configs:/opt/drupal/custom_configs
-      - /var/backups/scs-manager/snapshots:/var/scs-manager/snapshots
+      - /srv/backups/scs-manager/snapshots/:/var/scs-manager/snapshots
     environment:
       DB_DRIVER: ${SCS_MANAGER_DB_DRIVER}
       DB_HOST: ${SCS_MANAGER_DB_HOST}
@@ -88,6 +88,7 @@ services:
       MYSQL_USER: ${SCS_MANAGER_DB_USER}
     volumes:
       - scs-manager--database-data:/var/lib/mysql
+      - /srv/backups/scs-manager/snapshots/:/var/scs-manager/snapshots
 
   scs-manager--redis:
     image: redis:${REDIS_IMAGE_VERSION:-8-alpine}
