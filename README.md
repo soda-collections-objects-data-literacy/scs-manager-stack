@@ -303,8 +303,9 @@ docker compose up -d
 
 Xdebug configuration:
 - Port: `9003`
-- IDE key: `scs`
-- Trigger value: `scs`
+- IDE key: `CURSOR`
+- Trigger value: `CURSOR` (set `XDEBUG_SESSION=CURSOR` or `XDEBUG_TRIGGER=CURSOR` on the request)
+- Override ini: `configs/php/zz-xdebug-debug.ini` (mounted into the container)
 
 ## Troubleshooting
 
