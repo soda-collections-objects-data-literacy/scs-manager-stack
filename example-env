@@ -11,7 +11,7 @@ DB_ROOT_PASSWORD=
 MARIADB_IMAGE_VERSION=latest
 
 # Drupal
-DRUPAL_IMAGE=11.3.2-php8.3-fpm-bookworm
+DRUPAL_IMAGE=11.3-php8.4-fpm-bookworm
 DRUPAL_PASSWORD=
 DRUPAL_SITE_NAME=scs_manager
 DRUPAL_USER=scsadmin
