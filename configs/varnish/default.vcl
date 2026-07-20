@@ -83,6 +83,17 @@ sub vcl_recv {
     }
 
     # -------------------------
+    # Block common vulnerability scanners (WordPress probes, etc.)
+    # before they reach Drupal/PHP.
+    # -------------------------
+    if (req.url ~ "(?i)(^|/)(wp-includes|wp-content|wp-admin|wp-login\.php|xmlrpc\.php|wlwmanifest\.xml)" ||
+        req.url ~ "(?i)^/(wp\d*|wordpress)(/|$)" ||
+        req.url ~ "(?i)^/(cms|blog|shop|test|2018)/wp-" ||
+        req.url ~ "(?i)^/(\.env|\.git|phpmyadmin|phpunit|vendor/phpunit)") {
+        return (synth(403, "Forbidden"));
+    }
+
+    # -------------------------
     # Only cache GET/HEAD
     # -------------------------
     if (req.method != "GET" && req.method != "HEAD") {
