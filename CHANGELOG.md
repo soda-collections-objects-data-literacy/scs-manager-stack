@@ -9,6 +9,7 @@
 
 ### Changed
 
+- Central application cards are titled JupyterHub, Nextcloud, and WebProtégé (not the per-user instance name). WissKI, database, and triplestore cards keep the instance title.
 - Removed the **Restart Jupyter** button from the JupyterHub card; notebook stop/restart is on the health icon.
 
 ### Fixed
