@@ -12,7 +12,9 @@
 
 - Central application cards are titled JupyterHub, Nextcloud, and WebProtégé (not the per-user instance name). WissKI, database, and triplestore cards keep the instance title.
 - Removed the **Restart Jupyter** button from the JupyterHub card; notebook stop/restart is on the health icon.
+- The main-menu **Projects** tab is removed; projects are opened from the dashboard. Project members can be added (owners) and removed (self / admin / owner) on the project page.
 
 ### Fixed
 
+- SSO login no longer returns HTTP 500: `WsodCatcherSubscriber` no longer intercepts Drupal's `EnforcedResponseException` (used for the OpenID Connect redirect to Keycloak).
 - Mount corrected Nginx `drupal.conf` for SCS Manager so Drupal generates clean URLs without `/index.php` (replaces legacy `?q=` rewrite).
