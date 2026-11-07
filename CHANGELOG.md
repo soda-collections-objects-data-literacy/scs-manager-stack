@@ -16,5 +16,9 @@
 
 ### Fixed
 
+- SCS Manager dashboard uses the theme `logo.svg` without the site name, shows the `sidebar-secondary-nav` menu, and imports the German `soda_scs_manager` interface translations (toolbar label People → Personen).
+- The public front page no longer prints the node title "Home" above the hero, and the main menu only keeps Dashboard and Dokumentation.
+- `/en` uses the same `home_page` node as `/de`. The old English welcome page is no longer the front page.
+- The public footer shows each legal link once. Issue report, related, and social blocks are disabled.
 - SSO login no longer returns HTTP 500: `WsodCatcherSubscriber` no longer intercepts Drupal's `EnforcedResponseException` (used for the OpenID Connect redirect to Keycloak).
 - Mount corrected Nginx `drupal.conf` for SCS Manager so Drupal generates clean URLs without `/index.php` (replaces legacy `?q=` rewrite).
