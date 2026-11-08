@@ -8,6 +8,7 @@ services:
     volumes:
       - scs-manager--drupal-sites:/opt/drupal/web/sites
       - scs-manager--drupal-custom-modules:/opt/drupal/web/modules/custom
+      - scs-manager--drupal-config-sync:/opt/drupal/config/sync
       - ./custom_configs:/opt/drupal/custom_configs
       - /srv/backups/scs-manager/snapshots/:/var/scs-manager/snapshots
     environment:
@@ -147,6 +148,7 @@ services:
 
 volumes:
   scs-manager--database-data:
+  scs-manager--drupal-config-sync:
   scs-manager--drupal-custom-modules:
   scs-manager--drupal-sites:
   scs-manager--redis-data:
